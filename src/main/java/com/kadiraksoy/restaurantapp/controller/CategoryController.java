@@ -43,7 +43,7 @@ public class CategoryController {
 
     @GetMapping("/{id}")
     public ResponseEntity<CategoryResponse> getCategory(@PathVariable Long id) {
-        CategoryResponse categoryResponse = categoryService.getCategory(id);
+        CategoryResponse categoryResponse = categoryService.getCategoryById(id);
         return ResponseEntity.ok(categoryResponse);
     }
 }

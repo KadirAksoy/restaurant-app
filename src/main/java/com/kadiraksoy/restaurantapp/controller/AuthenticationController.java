@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/restaurant")
+@RequestMapping("/api/users")
 @RequiredArgsConstructor
 public class AuthenticationController {
 

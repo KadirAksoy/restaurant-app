@@ -1,6 +1,6 @@
 package com.kadiraksoy.restaurantapp.service;
 
-import com.kadiraksoy.restaurantapp.exception.CategoryNotFound;
+import com.kadiraksoy.restaurantapp.exception.CategoryNotFoundException;
 import com.kadiraksoy.restaurantapp.model.Category;
 import com.kadiraksoy.restaurantapp.payload.request.CategoryRequest;
 import com.kadiraksoy.restaurantapp.payload.response.CategoryResponse;
@@ -28,7 +28,7 @@ public class CategoryService {
     }
     public CategoryResponse updateCategory(Long id, CategoryRequest categoryRequest){
         Category category = categoryRepository.findById(id)
-                .orElseThrow(() -> new CategoryNotFound("Category not found."));
+                .orElseThrow(() -> new CategoryNotFoundException("Category not found."));
 
         category.setName(category.getName());
         log.info("category updated.");
@@ -45,9 +45,9 @@ public class CategoryService {
                 .map(category -> new CategoryResponse(category.getName()))
                 .collect(Collectors.toList());
     }
-    public CategoryResponse getCategory(Long id){
+    public CategoryResponse getCategoryById(Long id){
         Category category = categoryRepository.findById(id)
-                .orElseThrow(() -> new CategoryNotFound("Category not found"));
+                .orElseThrow(() -> new CategoryNotFoundException("Category not found"));
         log.info("category found.");
         return CategoryResponse.builder().name(category.getName()).build();
     }
