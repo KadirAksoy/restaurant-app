@@ -6,6 +6,7 @@ import com.kadiraksoy.restaurantapp.repository.ImageRepository;
 import com.kadiraksoy.restaurantapp.util.ImageUtils;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,6 +15,7 @@ import java.io.IOException;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class ImageService {
 
     private final ImageRepository imageRepository;
@@ -26,8 +28,9 @@ public class ImageService {
                 .type(file.getContentType())
                 .imageData(image)
                 .build();
-
-        return imageRepository.save(newImageData);
+        ImageData imageData = imageRepository.save(newImageData);
+        log.info("image saved.");
+        return imageData;
     }
 
 
@@ -42,11 +45,14 @@ public class ImageService {
         imageDataToUpdate.setType(file.getContentType());
         imageDataToUpdate.setImageData(compressedImage);
 
-        return imageRepository.save(imageDataToUpdate);
+        ImageData updatedImage = imageRepository.save(imageDataToUpdate);
+        log.info("image updated.");
+        return updatedImage;
     }
 
     public void deleteImageData(Long id) {
         imageRepository.deleteById(id);
+        log.info("image deleted with id:" + id);
     }
 
     public byte[] getImageData(Long id) {

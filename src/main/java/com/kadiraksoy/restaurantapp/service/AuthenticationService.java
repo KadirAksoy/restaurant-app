@@ -8,6 +8,7 @@ import com.kadiraksoy.restaurantapp.payload.response.JwtAuthenticationResponse;
 import com.kadiraksoy.restaurantapp.repository.UserRepository;
 import com.kadiraksoy.restaurantapp.security.JwtService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AuthenticationService {
 
     private final UserRepository userRepository;
@@ -36,9 +38,9 @@ public class AuthenticationService {
                 .build();
 
         user = userService.save(user);
-
         var jwt = jwtService.generateToken(user);
-
+        log.info("token created.")
+        ;
         return JwtAuthenticationResponse.builder().token(jwt).build();
     }
 
@@ -50,6 +52,7 @@ public class AuthenticationService {
         var user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid email or password."));
         var jwt = jwtService.generateToken(user);
+        log.info("token created.");
 
         return JwtAuthenticationResponse.builder().token(jwt).build();
     }
