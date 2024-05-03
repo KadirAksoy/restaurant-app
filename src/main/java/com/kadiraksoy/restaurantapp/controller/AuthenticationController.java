@@ -13,18 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/restaurant")
 @RequiredArgsConstructor
 public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
 
-    @PostMapping("/signup")
+    @PostMapping("/register")
     public JwtAuthenticationResponse register(@RequestBody SignUpRequest request) {
         return authenticationService.register(request);
     }
 
-    @PostMapping("/signin")
+    @PostMapping("/login")
     public JwtAuthenticationResponse login(@RequestBody SignInRequest request) {
         return authenticationService.login(request);
     }
