@@ -90,7 +90,7 @@ public class ProductService {
             CategoryResponse category = categoryService.getCategoryById(product.getCategory().getId());
 
             return ProductResponse.builder()
-                    .id(id)
+                    .id(product.getId())
                     .name(product.getName())
                     .price(product.getPrice())
                     .categoryResponse(CategoryResponse.builder()
