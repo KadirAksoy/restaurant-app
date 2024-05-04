@@ -1,6 +1,7 @@
 package com.kadiraksoy.restaurantapp.controller;
 
-import com.kadiraksoy.restaurantapp.payload.request.CategoryRequest;
+
+import com.kadiraksoy.restaurantapp.payload.request.CategoryServiceRequest;
 import com.kadiraksoy.restaurantapp.payload.response.CategoryResponse;
 import com.kadiraksoy.restaurantapp.service.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -18,13 +19,13 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @PostMapping
-    public ResponseEntity<CategoryResponse> createCategory(@RequestBody CategoryRequest categoryRequest) {
+    public ResponseEntity<CategoryResponse> createCategory(@RequestBody CategoryServiceRequest categoryRequest) {
         CategoryResponse createdCategory = categoryService.createCategory(categoryRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCategory);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoryResponse> updateCategory(@PathVariable Long id, @RequestBody CategoryRequest categoryRequest) {
+    public ResponseEntity<CategoryResponse> updateCategory(@PathVariable Long id, @RequestBody CategoryServiceRequest categoryRequest) {
         CategoryResponse updatedCategory = categoryService.updateCategory(id, categoryRequest);
         return ResponseEntity.ok(updatedCategory);
     }

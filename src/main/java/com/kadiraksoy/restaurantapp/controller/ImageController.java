@@ -1,5 +1,4 @@
 package com.kadiraksoy.restaurantapp.controller;
-
 import com.kadiraksoy.restaurantapp.service.ImageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ public class ImageController {
     private final ImageService imageService;
 
 
-    @PostMapping("/addImage")
+    @PostMapping("/upload")
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
         try {
             var image = imageService.saveImageData(file);
@@ -39,7 +38,7 @@ public class ImageController {
         }
     }
 
-    @GetMapping("/{imageId}")
+    @GetMapping("/getImage/{imageId}")
     public ResponseEntity<byte[]> downloadImage(@PathVariable Long imageId) {
         byte[] imageData = imageService.getImageData(imageId);
         if (imageData != null) {

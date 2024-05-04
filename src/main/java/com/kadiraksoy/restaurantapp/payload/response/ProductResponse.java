@@ -14,11 +14,11 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ProductResponse {
 
-
+    private Long id;
     private String name;
     private String description;
     private double price;
     private Long imageId;
-    private Category category;
+    private CategoryResponse categoryResponse;
 
 }

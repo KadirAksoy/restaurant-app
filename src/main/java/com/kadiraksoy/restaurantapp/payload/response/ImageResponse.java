@@ -1,15 +1,21 @@
 package com.kadiraksoy.restaurantapp.payload.response;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.aspectj.lang.annotation.After;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class CategoryResponse {
-    private Long id;
+public class ImageResponse {
     private String name;
+    private String url;
+    private String type;
+    private long size;
+
+
 }

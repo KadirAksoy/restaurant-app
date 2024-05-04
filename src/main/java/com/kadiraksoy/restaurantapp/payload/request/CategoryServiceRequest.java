@@ -1,6 +1,5 @@
 package com.kadiraksoy.restaurantapp.payload.request;
 
-import com.kadiraksoy.restaurantapp.model.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,11 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProductRequest {
+public class CategoryServiceRequest {
 
     private String name;
-    private String description;
-    private double price;
-    private Long imageId;
-    private CategoryRequest categoryRequest;
 }
