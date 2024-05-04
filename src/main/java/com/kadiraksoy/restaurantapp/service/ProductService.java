@@ -1,6 +1,8 @@
 package com.kadiraksoy.restaurantapp.service;
 
 import com.kadiraksoy.restaurantapp.exception.ProductNotFoundException;
+import com.kadiraksoy.restaurantapp.mapper.CategoryMapper;
+import com.kadiraksoy.restaurantapp.mapper.ProductMapper;
 import com.kadiraksoy.restaurantapp.model.Category;
 import com.kadiraksoy.restaurantapp.model.Product;
 import com.kadiraksoy.restaurantapp.payload.request.ProductRequest;
@@ -22,32 +24,17 @@ public class ProductService {
 
     private final ProductRepository productRepository;
     private final CategoryService categoryService;
+    private final ProductMapper productMapper;
+    private final CategoryMapper categoryMapper;
 
     public ProductResponse createProduct(ProductRequest productRequest){
-        Product product = Product.builder()
-                .name(productRequest.getName())
-                .price(productRequest.getPrice())
-                .category(Category.builder()
-                        .id(productRequest.getCategoryRequest().getId())
-                        .build())
-                .description(productRequest.getDescription())
-                .imageId(productRequest.getImageId())
-                .build();
-
+        Product product = productMapper.mapProductRequestToEntity(productRequest);
         productRepository.save(product);
         log.info("product created.");
 
         CategoryResponse category = categoryService.getCategoryById(productRequest.getCategoryRequest().getId());
 
-        return ProductResponse.builder()
-                .name(productRequest.getName())
-                .price(productRequest.getPrice())
-                .categoryResponse(CategoryResponse.builder()
-                        .id(category.getId())
-                        .name(category.getName()).build())
-                .description(productRequest.getDescription())
-                .imageId(productRequest.getImageId())
-                .build();
+        return productMapper.mapProductRequestToProductResponse(productRequest,category);
     }
 
     public ProductResponse updateProduct(Long id, ProductRequest productRequest){
@@ -65,15 +52,9 @@ public class ProductService {
         productRepository.save(product);
         log.info("product updated.");
 
-        return ProductResponse.builder()
-                .name(productRequest.getName())
-                .price(productRequest.getPrice())
-                .categoryResponse(CategoryResponse.builder()
-                        .id(productRequest.getCategoryRequest().getId())
-                        .build())
-                .description(productRequest.getDescription())
-                .imageId(productRequest.getImageId())
-                .build();
+        CategoryResponse category = categoryService.getCategoryById(product.getCategory().getId());
+
+        return productMapper.mapProductRequestToProductResponse(productRequest,category);
     }
 
     public void deleteProduct(Long id){
@@ -87,19 +68,12 @@ public class ProductService {
         if (productOptional.isPresent()) {
             Product product = productOptional.get();
 
-            CategoryResponse category = categoryService.getCategoryById(product.getCategory().getId());
+            Category category = categoryMapper
+                    .mapCategoryResponseToEntity(
+                            categoryService.getCategoryById(product.getCategory().getId())
+                    );
 
-            return ProductResponse.builder()
-                    .id(product.getId())
-                    .name(product.getName())
-                    .price(product.getPrice())
-                    .categoryResponse(CategoryResponse.builder()
-                            .id(product.getCategory().getId())
-                            .name(category.getName())
-                            .build())
-                    .description(product.getDescription())
-                    .imageId(product.getImageId())
-                    .build();
+            return productMapper.mapEntityToProductResponse(product,category);
         } else {
             throw new ProductNotFoundException("Ürün bulunamadı: " + id);
         }
@@ -107,17 +81,9 @@ public class ProductService {
 
     public List<ProductResponse> getAllProducts() {
         return productRepository.findAll().stream()
-                .map(product -> ProductResponse.builder()
-                        .id(product.getId())
-                        .name(product.getName())
-                        .price(product.getPrice())
-                        .categoryResponse(CategoryResponse.builder()
-                                .id(product.getCategory().getId())
-                                .name(product.getCategory().getName())
-                                .build())
-                        .description(product.getDescription())
-                        .imageId(product.getImageId())
-                        .build())
+                .map(product ->
+                        productMapper
+                                .mapEntityToProductResponse(product,product.getCategory()))
                 .collect(Collectors.toList());
     }
 
