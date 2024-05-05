@@ -1,6 +1,6 @@
 # Proje Adı
 
-Bu proje, aşağıdaki teknolojiler kullanılarak geliştirilmiş bir uygulamadır:
+Kullanılan teknolojiler.
 
 - Spring Boot
 - PostgreSQL
