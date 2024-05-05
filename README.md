@@ -8,6 +8,7 @@ Kullanılan teknolojiler.
 - Spring Security
 - JWT (JSON Web Token)
 - Aspect
+- Docker
 
 ## Başlangıç
 
