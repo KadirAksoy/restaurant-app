@@ -1,7 +1,7 @@
 package com.kadiraksoy.restaurantapp;
 
 import com.kadiraksoy.restaurantapp.model.Role;
-import com.kadiraksoy.restaurantapp.model.User;
+import com.kadiraksoy.restaurantapp.model.AppUser;
 import com.kadiraksoy.restaurantapp.repository.UserRepository;
 import com.kadiraksoy.restaurantapp.service.UserService;
 import org.springframework.boot.CommandLineRunner;
@@ -20,7 +20,7 @@ public class RestaurantAppApplication {
 	@Bean
 	CommandLineRunner runner(PasswordEncoder passwordEncoder, UserService userService){
 		return args -> {
-			User admin = User
+			AppUser admin = AppUser
 					.builder()
 					.username("admin")
 					.email("admin@admin.com")

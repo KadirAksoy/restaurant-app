@@ -1,7 +1,8 @@
 package com.kadiraksoy.restaurantapp.service;
 
+import com.kadiraksoy.restaurantapp.model.AppUser;
 import com.kadiraksoy.restaurantapp.model.Role;
-import com.kadiraksoy.restaurantapp.model.User;
+import com.kadiraksoy.restaurantapp.model.AppUser;
 import com.kadiraksoy.restaurantapp.payload.request.SignInRequest;
 import com.kadiraksoy.restaurantapp.payload.request.SignUpRequest;
 import com.kadiraksoy.restaurantapp.payload.response.JwtAuthenticationResponse;
@@ -27,13 +28,12 @@ public class AuthenticationService {
 
 
     public JwtAuthenticationResponse register(SignUpRequest request) {
-        var user = User
+        var user = AppUser
                 .builder()
                 .username(request.getUsername())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.ROLE_ADMIN)
-                .isActive(false)
                 .build();
 
         user = userService.save(user);

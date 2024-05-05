@@ -1,6 +1,7 @@
 package com.kadiraksoy.restaurantapp.service;
 
-import com.kadiraksoy.restaurantapp.model.User;
+import com.kadiraksoy.restaurantapp.model.AppUser;
+import com.kadiraksoy.restaurantapp.model.AppUser;
 import com.kadiraksoy.restaurantapp.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,7 @@ public class UserService {
         };
     }
 
-    public User save(User newUser) {
+    public AppUser save(AppUser newUser) {
         if (newUser.getId() == null) {
             newUser.setCreatedTime(LocalDateTime.now());
         }
