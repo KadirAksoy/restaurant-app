@@ -17,21 +17,21 @@ public class RestaurantAppApplication {
 		SpringApplication.run(RestaurantAppApplication.class, args);
 	}
 
-//	@Bean
-//	CommandLineRunner runner(PasswordEncoder passwordEncoder, UserService userService){
-//		return args -> {
-//			User admin = User
-//					.builder()
-//					.username("admin")
-//					.email("admin@admin.com")
-//					.password(passwordEncoder.encode("password"))
-//					.role(Role.ROLE_ADMIN)
-//					.build();
-//
-//			userService.save(admin);
-//			System.out.println("Admin created.");
-//
-//		};
-//	}
+	@Bean
+	CommandLineRunner runner(PasswordEncoder passwordEncoder, UserService userService){
+		return args -> {
+			User admin = User
+					.builder()
+					.username("admin")
+					.email("admin@admin.com")
+					.password(passwordEncoder.encode("password"))
+					.role(Role.ROLE_ADMIN)
+					.build();
+
+			userService.save(admin);
+			System.out.println("Admin created.");
+
+		};
+	}
 
 }
