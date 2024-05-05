@@ -45,3 +45,6 @@ mvn clean install
 mvn spring-boot:run
 ```
 
+### Swagger
+Gerekli adımları tamamladıktan sonra aşağıdaki adrese giderek. Swagger arayüzüne erişebilirsiniz.
+(http://localhost:8080/swagger-ui/index.html#/)
