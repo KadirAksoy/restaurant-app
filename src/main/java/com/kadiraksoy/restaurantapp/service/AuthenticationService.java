@@ -32,8 +32,7 @@ public class AuthenticationService {
                 .username(request.getUsername())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                // Kayıt olan birinin rolünü User olarak yapıyoruz.
-                .role(Role.ROLE_USER)
+                .role(Role.ROLE_ADMIN)
                 .isActive(false)
                 .build();
 
