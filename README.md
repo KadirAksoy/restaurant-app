@@ -26,7 +26,7 @@ Projenin çalıştırılması için aşağıdaki yazılımların yüklü olması
 1. Bu projeyi klonlayın:
 
 ```
-[git clone https://github.com/kullanici/proje.git]
+https://github.com/KadirAksoy/restaurant-app.git
 ```
 
 
