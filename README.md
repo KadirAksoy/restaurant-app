@@ -1,54 +1,40 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proje Adı</title>
-</head>
-<body>
-    <h1>Proje Adı</h1>
+# Proje Adı
 
-    <p>Bu proje, aşağıdaki teknolojiler kullanılarak geliştirilmiş bir uygulamadır:</p>
-    
-    <ul>
-        <li>Spring Boot</li>
-        <li>PostgreSQL</li>
-        <li>Swagger</li>
-        <li>Spring Security</li>
-        <li>JWT (JSON Web Token)</li>
-        <li>Aspect</li>
-    </ul>
+Bu proje, aşağıdaki teknolojiler kullanılarak geliştirilmiş bir uygulamadır:
 
-    <h2>Başlangıç</h2>
+- Spring Boot
+- PostgreSQL
+- Swagger
+- Spring Security
+- JWT (JSON Web Token)
+- Aspect
 
-    <p>Bu talimatlar, projeyi yerel makinenizde çalıştırmak ve geliştirmek için size yol gösterecektir.</p>
+## Başlangıç
 
-    <h3>Önkoşullar</h3>
+Bu talimatlar, projeyi yerel makinenizde çalıştırmak ve geliştirmek için size yol gösterecektir. 
 
-    <p>Projenin çalıştırılması için aşağıdaki yazılımların yüklü olması gerekmektedir:</p>
+### Önkoşullar
 
-    <ul>
-        <li>Docker</li>
-        <li>Maven</li>
-        <li>Java</li>
-    </ul>
+Projenin çalıştırılması için aşağıdaki yazılımların yüklü olması gerekmektedir:
 
-    <h3>Kurulum</h3>
+- Docker
+- Maven
+- Java
 
-    <ol>
-        <li>Bu projeyi klonlayın:</li>
-        <code>git clone https://github.com/kullanici/proje.git</code>
+### Kurulum
 
-        <li>PostgreSQL veritabanını docker-compose.yml dosyası ile başlatın:</li>
-        <code>docker-compose up -d</code>
+1. Bu projeyi klonlayın:
 
-        <li>Projeyi derlemek ve çalıştırmak için aşağıdaki Maven komutlarını kullanın:</li>
-        <code>cd proje</code>
-        <code>mvn clean install</code>
-        <code>mvn spring-boot:run</code>
-    </ol>
+git clone https://github.com/kullanici/proje.git
 
 
+2. PostgreSQL veritabanını docker-compose.yml dosyası ile başlatın:
 
-</body>
-</html>
+docker-compose up -d
+
+
+3. Projeyi derlemek ve çalıştırmak için aşağıdaki Maven komutlarını kullanın:
+
+cd proje
+mvn clean install
+mvn spring-boot:run
