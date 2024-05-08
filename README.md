@@ -1,4 +1,4 @@
-# Proje Adı
+# Restaurant App
 
 Kullanılan teknolojiler.
 
