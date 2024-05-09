@@ -35,7 +35,8 @@ public class CategoryService {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new CategoryNotFoundException("Category not found."));
 
-        category.setName(category.getName());
+        category.setName(categoryRequest.getName());
+        categoryRepository.save(category);
         log.info("category updated.");
 
         return categoryMapper.mapCategoryToCategoryResponse(category);

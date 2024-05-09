@@ -1,6 +1,5 @@
 package com.kadiraksoy.restaurantapp.payload.request;
 
-import com.kadiraksoy.restaurantapp.model.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
